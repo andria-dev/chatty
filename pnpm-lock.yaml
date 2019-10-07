@@ -1,6 +1,7 @@
 dependencies:
   react: registry.npmjs.org/react/16.10.2
   react-dom: registry.npmjs.org/react-dom/16.10.2_react@16.10.2
+  react-native-svg: registry.npmjs.org/react-native-svg/9.11.1_react@16.10.2
   react-native-web: registry.npmjs.org/react-native-web/0.11.7_react-dom@16.10.2+react@16.10.2
   react-scripts: registry.npmjs.org/react-scripts/3.2.0
 lockfileVersion: 5.1
@@ -9332,6 +9333,9 @@ packages:
     name: jest-pnp-resolver
     peerDependencies:
       jest-resolve: '*'
+    peerDependenciesMeta:
+      jest-resolve:
+        optional: true
     resolution:
       integrity: sha512-pgFw2tm54fzgYvc/OHrnysABEObZCUNFnhjoRjaVOCN8NYc032/gVjPaHD4Aq6ApkSieWtfKAFQtmDKAmhupnQ==
       registry: 'http://registry.npmjs.com/'
@@ -13339,6 +13343,20 @@ packages:
       registry: 'http://registry.npmjs.com/'
       tarball: 'https://registry.npmjs.org/react-is/-/react-is-16.10.2.tgz'
     version: 16.10.2
+  registry.npmjs.org/react-native-svg/9.11.1_react@16.10.2:
+    dependencies:
+      react: registry.npmjs.org/react/16.10.2
+    dev: false
+    id: registry.npmjs.org/react-native-svg/9.11.1
+    name: react-native-svg
+    peerDependencies:
+      react: '*'
+      react-native: '>=0.50.0'
+    resolution:
+      integrity: sha512-BmNCM81SSzhj1+N5rYiy7sxrkmybgiT8Cu8yVRB7zVoWze/i1lbCWJah+Gk0OHHwR35ZA31oVKf5jtO4G1n94Q==
+      registry: 'http://registry.npmjs.com/'
+      tarball: 'https://registry.npmjs.org/react-native-svg/-/react-native-svg-9.11.1.tgz'
+    version: 9.11.1
   registry.npmjs.org/react-native-web/0.11.7_react-dom@16.10.2+react@16.10.2:
     dependencies:
       array-find-index: registry.npmjs.org/array-find-index/1.0.2
@@ -15462,6 +15480,9 @@ packages:
     name: ts-pnp
     peerDependencies:
       typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
     resolution:
       integrity: sha512-1J/vefLC+BWSo+qe8OnJQfWTYRS6ingxjwqmHMqaMxXMj7kFtKLgAaYW3JeX3mktjgUL+etlU8/B4VUAUI9QGw==
       registry: 'http://registry.npmjs.com/'
@@ -16673,5 +16694,6 @@ packages:
 specifiers:
   react: ^16.10.2
   react-dom: ^16.10.2
+  react-native-svg: ^9.11.1
   react-native-web: ^0.11.7
   react-scripts: 3.2.0
