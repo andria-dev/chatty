@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "203165867287",
+    "firebase_url": "https://chatroom-e9b48.firebaseio.com",
+    "project_id": "chatroom-e9b48",
+    "storage_bucket": "chatroom-e9b48.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:203165867287:android:05828bb43229de295f6b52",
+        "android_client_info": {
+          "package_name": "com.browniedev.chatty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "203165867287-rc783e98b4j4p2vl8vs57d8ervs5jhog.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDobqoeCOLA8WXUwrN7U13azh5eA1XrHSA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "203165867287-rc783e98b4j4p2vl8vs57d8ervs5jhog.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
