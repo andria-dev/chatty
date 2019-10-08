@@ -5,7 +5,8 @@ function ChatListScreen({ navigation }) {
 }
 
 ChatListScreen.navigationOptions = {
-  title: 'Chats'
+  title: 'Chats',
+  headerLeft: null
 };
 
 export default ChatListScreen;
