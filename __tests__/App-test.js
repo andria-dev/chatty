@@ -5,10 +5,10 @@ import renderer from 'react-test-renderer';
 import App from '../App';
 
 jest.mock('expo', () => ({
-  AppLoading: 'AppLoading',
+  AppLoading: 'AppLoading'
 }));
 
-jest.mock('../navigation/AppNavigator', () => 'AppNavigator');
+jest.mock('../navigation', () => 'AppContainer');
 
 describe('App', () => {
   jest.useFakeTimers();
