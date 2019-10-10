@@ -5,7 +5,8 @@ import React from 'react';
 import {
   render,
   fireEvent,
-  waitForElement
+  waitForElement,
+  act
 } from '@testing-library/react-native';
 
 import '../screens/LoginScreen';
@@ -23,27 +24,79 @@ test('Clicking on the login button triggers a login', () => {
   const mockFn = jest.fn();
 
   mockAuth.onAuthStateChanged(mockFn);
-  mockAuth.flush();
-
-  expect(mockFn).toBeCalled();
-});
-
-test('Logging in saves displayName and photoURL to the database', () => {
-  mockAuth.changeAuthState({
-    uid: 'test-uid',
-    provider: 'Google',
-    token: 'test-token',
-    expires: Math.floor(new Date() / 1000) + 24 * 60 * 60
+  act(() => {
+    mockAuth.flush();
   });
 
-  mockAuth.flush();
-  mockFirestore.flush();
-
-  const mockFn = jest.fn(user => console.log(user));
-  mockFirestore
-    .doc('users/test-uid')
-    .get()
-    .then(mockFn);
-
   expect(mockFn).toBeCalled();
 });
+
+describe('Logging in modifies the database:', () => {
+  const mockDisplayName = 'Tester';
+  const mockPhotoURL = 'https://test.com/test.png';
+
+  const mockFn = jest.fn();
+  const oldDoc = mockFirestore.doc;
+
+  beforeEach(() => {
+    mockAuth.changeAuthState({
+      uid: 'test-uid',
+      displayName: mockDisplayName,
+      photoURL: mockPhotoURL
+    });
+  });
+
+  test('if snapshot does not exist set new displayName and photoURL', done => {
+    mockFirestore.doc = path => {
+      expect(path).toBe('users/test-uid');
+      return {
+        // userDoc
+        async get() {
+          return {
+            // snapshot
+            exists: false
+          };
+        },
+        set({ displayName, photoURL }) {
+          expect(displayName).toBe(mockDisplayName);
+          expect(photoURL).toBe(mockPhotoURL);
+          done();
+        }
+      };
+    };
+
+    act(() => {
+      mockAuth.flush();
+    });
+  });
+
+  test('if snapshot exists update displayName and photoURL', done => {
+    mockFirestore.doc = path => {
+      expect(path).toBe('users/test-uid');
+      return {
+        // userDoc
+        async get() {
+          return {
+            // snapshot
+            exists: true,
+            data() {
+              return {
+                displayName: 'outdated name',
+                photoURL: 'https://outdated.com/photo.png'
+              };
+            }
+          };
+        },
+        set({ displayName, photoURL }) {
+          expect(displayName).toBe(mockDisplayName);
+          expect(photoURL).toBe(mockPhotoURL);
+          done();
+        }
+      };
+    };
+
+    act(() => {
+      mockAuth.flush();
+    });
+  });
+}, 10000);

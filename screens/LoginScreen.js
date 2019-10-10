@@ -17,7 +17,6 @@ function useSetupUser() {
       userDoc
         .get()
         .then(snapshot => {
-          console.log('Snapshot:', snapshot);
           if (canceled) {
             return;
           }
