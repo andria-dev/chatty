@@ -13,7 +13,6 @@ function useSetupUser() {
     if (user && user.uid) {
       let canceled = false;
       const userDoc = firestore.doc(`users/${user.uid}`);
-      console.log(userDoc);
 
       userDoc
         .get()

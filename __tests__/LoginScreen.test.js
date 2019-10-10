@@ -44,4 +44,6 @@ test('Logging in saves displayName and photoURL to the database', () => {
     .doc('users/test-uid')
     .get()
     .then(mockFn);
+
+  expect(mockFn).toBeCalled();
 });
