@@ -31,72 +31,28 @@ test('Clicking on the login button triggers a login', () => {
   expect(mockFn).toBeCalled();
 });
 
-describe('Logging in modifies the database:', () => {
-  const mockDisplayName = 'Tester';
-  const mockPhotoURL = 'https://test.com/test.png';
+// test('New user data is entered upon initial login', done => {
+//   mockAuth.changeAuthState({
+//     uid: 'test-uid',
+//     displayName: 'test',
+//     photoURL: 'test-url.com'
+//   });
 
-  const mockFn = jest.fn();
-  const oldDoc = mockFirestore.doc;
+//   act(() => {
+//     mockAuth.flush();
+//   });
 
-  beforeEach(() => {
-    mockAuth.changeAuthState({
-      uid: 'test-uid',
-      displayName: mockDisplayName,
-      photoURL: mockPhotoURL
-    });
-  });
+//   act(() => {
+//     mockFirestore.flush();
+//   });
 
-  test('if snapshot does not exist set new displayName and photoURL', done => {
-    mockFirestore.doc = path => {
-      expect(path).toBe('users/test-uid');
-      return {
-        // userDoc
-        async get() {
-          return {
-            // snapshot
-            exists: false
-          };
-        },
-        set({ displayName, photoURL }) {
-          expect(displayName).toBe(mockDisplayName);
-          expect(photoURL).toBe(mockPhotoURL);
-          done();
-        }
-      };
-    };
-
-    act(() => {
-      mockAuth.flush();
-    });
-  });
-
-  test('if snapshot exists update displayName and photoURL', done => {
-    mockFirestore.doc = path => {
-      expect(path).toBe('users/test-uid');
-      return {
-        // userDoc
-        async get() {
-          return {
-            // snapshot
-            exists: true,
-            data() {
-              return {
-                displayName: 'outdated name',
-                photoURL: 'https://outdated.com/photo.png'
-              };
-            }
-          };
-        },
-        set({ displayName, photoURL }) {
-          expect(displayName).toBe(mockDisplayName);
-          expect(photoURL).toBe(mockPhotoURL);
-          done();
-        }
-      };
-    };
-
-    act(() => {
-      mockAuth.flush();
-    });
-  });
-}, 10000);
+//   console.log(
+//     mockFirestore
+//       .doc('users/test-uid')
+//       .get()
+//       .then(x => {
+//         console.log(x.data());
+//         done();
+//       })
+//   );
+// });

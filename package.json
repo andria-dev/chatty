@@ -6,7 +6,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll --runInBand"
   },
   "jest": {
     "preset": "jest-expo",
@@ -36,6 +36,7 @@
     "@testing-library/react-native": "^4.0.12",
     "babel-preset-expo": "^7.0.0",
     "firebase-mock": "^2.2.10",
+    "jest": "^24.9.0",
     "jest-expo": "^35.0.0"
   },
   "private": true

@@ -20,7 +20,16 @@ function useSetupUser() {
           if (canceled) {
             return;
           }
-          if (!snapshot.exists) {
+
+          const { displayName, photoURL } = snapshot.data() || {};
+          console.log('Does snapshot exist', snapshot.exists);
+          console.log('displayName', displayName);
+          if (
+            !snapshot.exists ||
+            displayName !== user.displayName ||
+            photoURL !== user.photoURL
+          ) {
+            console.log('Updating user doc');
             userDoc.set({
               displayName: user.displayName,
               photoURL: user.photoURL
