@@ -21,16 +21,18 @@ function useSetupUser() {
             return;
           }
 
-          const { displayName, photoURL } = snapshot.data() || {};
+          const { displayName, photoURL, activeChatRooms } =
+            snapshot.data() || {};
           if (
             !snapshot.exists ||
             displayName !== user.displayName ||
-            photoURL !== user.photoURL
+            photoURL !== user.photoURL ||
+            !activeChatRooms
           ) {
             userDoc.set({
               displayName: user.displayName,
               photoURL: user.photoURL,
-              activeChatRooms: user.activeChatRooms || []
+              activeChatRooms: activeChatRooms || []
             });
           }
         })
