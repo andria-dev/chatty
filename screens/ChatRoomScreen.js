@@ -5,12 +5,21 @@ import { auth, firestore } from '../firebase';
 import { FontAwesome5 } from '@expo/vector-icons';
 
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useCollection } from 'react-firebase-hooks/firestore';
+import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
 
 function ChatRoomScreen({ navigation }) {
   const [user] = useAuthState(auth);
+  const [userData, loading, error] = useDocument(`users/${user.uid}`);
 
-  return <View></View>;
+  if (!loading && !error) {
+    return (
+      <View>
+        {userData.activeChatRooms.map(id => (
+          <ChatRoomListItem chatRoomID={id} />
+        ))}
+      </View>
+    );
+  }
 }
 
 ChatRoomScreen.navigationOptions = ({ navigation }) => ({
