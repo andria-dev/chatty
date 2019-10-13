@@ -17,10 +17,6 @@ function useSetupUser() {
       userDoc
         .get()
         .then(snapshot => {
-          if (canceled) {
-            return;
-          }
-
           const { displayName, photoURL, activeChatRooms } =
             snapshot.data() || {};
           if (
@@ -37,8 +33,6 @@ function useSetupUser() {
           }
         })
         .catch(error => console.error('An error has occurred!!!', error));
-
-      return () => (canceled = true);
     }
   }, [user]);
 }

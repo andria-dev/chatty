@@ -1,25 +1,7 @@
-import React, { useEffect } from 'react';
-import { View, Text, Button } from 'react-native';
-
-import { auth, firestore } from '../firebase';
-import { FontAwesome5 } from '@expo/vector-icons';
-
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
+import React from 'react';
 
 function ChatRoomScreen({ navigation }) {
-  const [user] = useAuthState(auth);
-  const [userData, loading, error] = useDocument(`users/${user.uid}`);
-
-  if (!loading && !error) {
-    return (
-      <View>
-        {userData.activeChatRooms.map(id => (
-          <ChatRoomListItem chatRoomID={id} />
-        ))}
-      </View>
-    );
-  }
+  return null;
 }
 
 ChatRoomScreen.navigationOptions = ({ navigation }) => ({

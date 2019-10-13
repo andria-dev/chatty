@@ -16,6 +16,8 @@ function ChatRoomListItem({ chatRoomID }) {
       </View>
     );
   }
+
+  return null;
 }
 
 export default ChatRoomListItem;
